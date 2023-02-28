@@ -61,7 +61,7 @@ funciones) el cual debe ser enviado a compilar usando una llamada de sistema.
   
 5. Se debe instalar LaTeX en la computadora para desarrollar el proyecto
 
-
-# Como sera Evaluado el proyecto #
+  <br/> 
+# Evaluacion del Proyecto #
   
 ![image](https://user-images.githubusercontent.com/104220377/221728817-9406d1a0-90ae-44a9-82e0-e3cab598dfce.png)
