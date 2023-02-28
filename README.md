@@ -2,9 +2,7 @@
 
 Integrantes de Equipo: 
 
-Johanel Alvarez Alvarez.
-Fabrizio Vivas Martinez.
-Jeaustin Huaman Aguilar.
+<p> - Johanel Alvarez Alvarez.  <br> - Fabrizio Vivas Martinez.  <br> - Jeaustin Huaman Aguilar.
   
   
   
