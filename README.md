@@ -27,9 +27,40 @@ forma: d25, h2a y b10. La letra d indica un número en decimal, h indica hexadec
   
 5. En caso de no indicarlo el usuario, se tomará el número como decimal
   
+    <br/> 
+  _Especificación de salida:_
+  
+1. El programa debe generar un archivo .pdf con la solución del cálculo de la multiplicación binaria.
+  
+2. El pdf debe ser generado por medio de LaTeX. El documento debe ser estilo Beamer, es decir, con
+diapositivas.
+  
+3. La primera diapositiva debe indicar los valores que se leyeron en la entrada de usuario (operandos,
+cantidad de bits, nombre del archivo de configuración).
+  
+4. Las siguientes diapositivas deben demostrar el desarrollo completo de la multiplicación binaria y el
+resultado final.
+  
+5. En la última diapositiva se debe mostrar la información de la institución, integrantes, curso, año y
+semestre.
+  
+    <br/> 
+  _Consideraciones para el desarrollo:_
   
   
+1. Por cuestiones de simplicidad, la cantidad de los bits estará limitada a 8 bits máximo.
   
+2. Se permite utilizar cualquier lenguaje de programación de preferencia del estudiante. Se sugiere utilizar
+Python 3.
+  
+3. Se permiten utilizar bibliotecas externas para facilitar la programación a excepción de
+aquellas que generen documentos LaTeX.
+  
+4. En el caso de LaTeX, se espera que el programa genere un archivo de texto plano (con sus propias
+funciones) el cual debe ser enviado a compilar usando una llamada de sistema.
+  
+5. Se debe instalar LaTeX en la computadora para desarrollar el proyecto
+
   
 
 
