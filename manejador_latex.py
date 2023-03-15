@@ -1,6 +1,7 @@
 import os
 
 class Procedimiento:
+    """Guarda información de un procedimiento en LaTeX."""
     tabla_operadores = {
         "+": "+",
         "-": "-",
@@ -10,6 +11,7 @@ class Procedimiento:
         "=>": "\\Longrightarrow",
         "<=>": "\\Longleftrightarrow",
         "<<": "\\ll",
+        "^": "^"
     }
 
     def __init__(self, var1, operador, var2):
@@ -25,9 +27,10 @@ class Procedimiento:
         var2 = self.var2
         if type(var2) != Procedimiento:
             var2 = f"\\text{{{var2}}}"
-        return f"{var1} {self.tabla_operadores[self.operador]} {var2}"
+        return f"{var1}{self.tabla_operadores[self.operador]}" + ('{' if self.operador == '^' else '') + f"{var2}" + ('}' if self.operador == '^' else '')
 
 class Paso:
+    """Guarda información de un paso de la multiplicación binaria."""
     def __init__(self, nombre, desc, procedimientos):
         self.nombre = nombre
         self.desc = desc

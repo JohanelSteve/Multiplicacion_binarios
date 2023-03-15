@@ -1,6 +1,7 @@
 from manejador_latex import *
 
 class Convertidor:
+    """Clase que convierte números a binario y realiza operaciones binarias."""
     def __init__(self, bits):
         self.bits = bits
         self.pasos = []
@@ -32,11 +33,13 @@ class Convertidor:
         signo = 1
         primero = n[0]
 
+        # Determinar si el número no tiene prefijos
         if self.caracter_es_digito(primero):
             return [signo, self.entero_a_binario(int(n))]
         
         resultado = None
 
+        # Determinar el signo del número
         if (n[1] == 's' and n[2] == '-'):
             signo = -1
             n = n[3:]
@@ -46,6 +49,7 @@ class Convertidor:
         else:
             n = n[1:]
         
+        # Determinar la base del número y convertirlo a binario
         if primero == 'b':
             resultado = [int(x) for x in n]
         elif primero == 'h':
@@ -110,7 +114,7 @@ class Convertidor:
         # Inicializar el resultado como una lista de ceros con longitud 2n
 
         self.pasos.append(Paso("Inicializar registro y empezar a multiplicar",
-                               f"Inicializar el resultado como una lista de ceros con longitud 2 $\\times$ self.bits y empezar a recorrer los bits de abs({nombre_b}).",
+                               f"Inicializar el resultado como una lista de ceros con longitud ${Procedimiento(2, '*', self.bits)}$ y empezar a recorrer los bits de abs({nombre_b}).",
                                [Procedimiento("resultado", "=", [0] * (2*self.bits))]))
         resultado = [0] * (2*self.bits)
 
@@ -119,18 +123,19 @@ class Convertidor:
         for i in range(self.bits):
             # Si el bit de b es 1, sumar a * 2^i
             self.pasos.append(Paso(f"Sumar o no sumar No.{i+1}",
-                                   f"Si el bit de abs({nombre_b}) es 1, sumar abs({nombre_a})$\\times 2^{{i}}$.",
-                                   [Procedimiento(Procedimiento(f"abs({nombre_b})[{self.bits - 1 - i}]", "=", b[self.bits - 1 - i]), "=>", "Sí se hace la suma" if b[self.bits - 1 - i] == 1 else "No se hace la suma")]))
+                                   f"Si el bit de ${Procedimiento(f'abs({nombre_b})', '=', 1)}$ es 1, sumar ${Procedimiento(f'abs({nombre_a})', '*', Procedimiento(2, '^', i))}$ al resultado.",
+                                   [Procedimiento(Procedimiento(f"abs({nombre_b})[{self.bits - 1 - i}]", '=', b[self.bits - 1 - i]), "=>", "Sí se hace la suma" if b[self.bits - 1 - i] == 1 else "No se hace la suma")]))
             if b[self.bits - 1 - i] == 1:
                 # Multiplicar a * 2^i y agregar 0s al inicio
                 producto = [0] * (self.bits-i) + a + [0] * i
 
                 # Agregar el resultado parcial a la lista de resultados
                 resultado = self.sumar_binarios(resultado, producto)
+
                 self.pasos.append(Paso(f"Sumar No.{i+1}",
-                                       f"Sumar abs({nombre_a})$\\times 2^{{i}}$ al resultado.",
+                                       f"Sumar ${Procedimiento(f'abs({nombre_a})', '*', Procedimiento(2, '^', i))}$ al resultado.",
                                        [Procedimiento(Procedimiento(a, "<<", i), '=', producto),
-                                            Procedimiento(Procedimiento(f"resultado", "+", "producto"), "=", resultado)]))
+                                            Procedimiento(Procedimiento(f"resultado", '+', "producto"), '=', resultado)]))
 
         self.pasos.append(Paso("Recortar resultado",
                                "Recortar el resultado para la cantidad de bits en cuestión.",
