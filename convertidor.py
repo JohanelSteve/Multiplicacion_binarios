@@ -1,6 +1,9 @@
+from manejador_latex import *
+
 class Convertidor:
     def __init__(self, bits):
         self.bits = bits
+        self.pasos = []
 
     def binario_a_entero(self, n):
         """Convierte una lista de 0s y 1s en un entero."""
@@ -52,13 +55,10 @@ class Convertidor:
 
         return signo, resultado
 
-    def sumar_binarios(self, a, b):
+    def sumar_binarios(self, a, b, bits=None):
         """Suma dos números binarios y devuelve el resultado."""
-        # Ajustar las longitudes de las listas para que tengan la misma longitud
-        while len(a) < len(b):
-            a.insert(0, 0)
-        while len(b) < len(a):
-            b.insert(0, 0)
+        if bits is None:
+            bits = self.bits*2
 
         # Realizar la suma binaria
         carry = 0
@@ -79,57 +79,61 @@ class Convertidor:
         if carry == 1:
             resultado.insert(0, 1)
 
-        return resultado
+        return resultado[-bits:]
 
-    def multiplicacion_binaria(self, a, b):
-        # Convertir los números a listas de dígitos binarios
-        a = [int(d) for d in str(abs(a))]
-        b = [int(d) for d in str(abs(b))]
+    def multiplicacion_binaria(self, nombre_a, a, signo_a, nombre_b, b, signo_b):
+        """Realiza la multiplicación binaria de dos números binarios."""
 
-        # Calcular el tamaño máximo del resultado y extender los números con ceros a la izquierda
-        n = max(len(a), len(b))
-        a = [0] * (n - len(a)) + a
-        b = [0] * (n - len(b)) + b
+        self.pasos.append(Paso("Tomar el valor absoluto de los números",
+                            "Se toma el valor absoluto de los números para realizar la multiplicación.",
+                            [Procedimiento('abs(' + nombre_a + ')', '=', a),
+                                Procedimiento('abs(' + nombre_b + ')', '=', b)]))
 
-        # Determinar los signos de los números y convertirlos a valores absolutos en complemento a dos
-        signo_a = -1 if a[0] == 1 else 1
-        signo_b = -1 if b[0] == 1 else 1
-        a_abs = a if signo_a == 1 else self.complemento_a_dos(a)
-        b_abs = b if signo_b == 1 else self.complemento_a_dos(b)
+        self.pasos.append(Paso("Multiplicación binaria",
+                               "Se realiza la multiplicación binaria (de valor absoluto) de los dos números binarios.",
+                               [Procedimiento(Procedimiento(Procedimiento(f"abs({nombre_a})", "*", f"abs({nombre_b})"), '=', Procedimiento(f"{a}", "*", f"{b}")), '=', "...")]))
 
         # Realizar la multiplicación de los valores absolutos en complemento a dos
-        resultado_abs = self.multiplicacion_binaria_abs(a_abs, b_abs)
+        resultado_abs = self.multiplicacion_binaria_abs(a, b)
 
         # Determinar el signo del resultado y convertirlo a complemento a dos si es negativo
-        signo_resultado = -1 if signo_a * signo_b == -1 else 1
-        resultado = resultado_abs if signo_resultado == 1 else self.complemento_a_dos(resultado_abs)
+        resultado = resultado_abs if signo_a*signo_b == 1 else self.complemento_a_dos(resultado_abs)
+        self.pasos.append(Paso("Aplicando negativos",
+                               "Se determina el signo del resultado y se convierte a complemento a dos si es negativo.",
+                               [Procedimiento(Procedimiento("", '+' if signo_a*signo_b == 1 else '-', resultado_abs), "=>", resultado)]))
 
         return resultado
 
     def multiplicacion_binaria_abs(self, a, b):
+        """Realiza la multiplicación binaria de dos números binarios sin signo."""
+
         # Inicializar el resultado como una lista de ceros con longitud 2n
-        n = len(a)
-        resultado = [0] * (2*n)
+
+        self.pasos.append(Paso("Inicializar registro",
+                               "Inicializar el resultado como una lista de ceros con longitud 2*self.bits.",
+                               [Procedimiento("resultado", "=", [0] * (2*self.bits))]))
+        resultado = [0] * (2*self.bits)
+
 
         # Realizar la multiplicación de manera iterativa
-        for i in range(n):
-            for j in range(n):
-                producto = a[i] * b[j]
-                resultado[i+j] += producto
+        for i in range(self.bits):
+            # Si el bit de b es 1, sumar a * 2^i
+            if b[self.bits - 1 - i] == 1:
+                # Multiplicar a * 2^i y agregar 0s al inicio
+                producto = [0] * (self.bits-i) + a + [0] * i
 
-        # Realizar el acarreo y ajuste de los dígitos binarios
-        for i in range(2*n-1):
-            acarreo = resultado[i] // 2
-            resultado[i] %= 2
-            resultado[i+1] += acarreo
+                # Agregar el resultado parcial a la lista de resultados
+                resultado = self.sumar_binarios(resultado, producto)
+                print(resultado)
 
-        # Eliminar los ceros sobrantes del resultado
-        while resultado[-1] == 0 and len(resultado) > 1:
-            resultado.pop()
-
-        return resultado
+        self.pasos.append(Paso("Recortar resultado",
+                               "Recortar el resultado para la cantidad de bits en cuestión.",
+                               [Procedimiento(resultado, '=', resultado[-self.bits:])]))
+        return resultado[-self.bits:]
 
     def complemento_a_dos(self, a):
+        """Convierte un número binario en complemento a dos."""
+
         # Calcular el complemento a uno invirtiendo los dígitos binarios
         complemento_uno = [1-d for d in a]
 
@@ -144,10 +148,3 @@ class Convertidor:
                 resultado[i] = 0
 
         return resultado
-
-
-"""a = 1111111111
-b = 1000110111
-resultado = multiplicacion_binaria(a, b)
-print(f"{a} x {b} = {resultado} (esperado: 14031)")"""
-

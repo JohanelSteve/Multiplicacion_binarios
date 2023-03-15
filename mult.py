@@ -2,12 +2,14 @@ import sys, convertidor
 from manejador_latex import *
 
 def leer_archivo(archivo):
+    """Lee un archivo y devuelve su contenido en una lista."""
     data = None
     with open(archivo, "r") as f:
         data = f.readlines()[0].split(" ")
     return data[1:]
 
 def leer_argumentos(argumentos):
+    """Lee los argumentos de la línea de comandos y los devuelve en una lista."""
     data = []
     for arg in argumentos[1:]:
         if arg[0] == '-':
@@ -17,6 +19,7 @@ def leer_argumentos(argumentos):
     return data
 
 def procesar_entradas(operador, informacion):
+    """Procesa las entradas para convertirlas a binario."""
     informacion[2] = operador.convertir_a_binario(informacion[2])
     informacion[4] = operador.convertir_a_binario(informacion[4])
 
@@ -29,20 +32,17 @@ if __name__ == "__main__":
     else:
         informacion = leer_argumentos(argumentos)
     operador = convertidor.Convertidor(int(informacion[0]))
-    pasos.append(Paso("Recepción de datos",
+    operador.pasos.append(Paso("Recepción de datos",
                     "Se recibe la cantidad de bits junto con las variables asociadas a sus respectivos valores.",
                     [Procedimiento("bits", '=', informacion[0]),
                         Procedimiento(informacion[1], '=', informacion[2]),
                         Procedimiento(informacion[3], '=', informacion[4])]))
     procesar_entradas(operador, informacion)
-    pasos.append(Paso("Convertir datos a binario",
+    operador.pasos.append(Paso("Convertir datos a binario",
                     "Se convierten los datos a listas de 0s y 1s para representar un valor binario.",
                     [Procedimiento("bits", '=', informacion[0]),
                         Procedimiento(informacion[1], '=', Procedimiento("", '+' if informacion[2][0] == 1 else '-', informacion[2][1])),
                         Procedimiento(informacion[3], '=', Procedimiento("", '+' if informacion[4][0] == 1 else '-', informacion[4][1]))]))
-    pasos.append(Paso("Tomar el valor absoluto de los números",
-                    "Se toma el valor absoluto de los números para realizar la multiplicación.",
-                    [Procedimiento('abs(' + informacion[1] + ')', '=', informacion[2][1]),
-                        Procedimiento('abs(' + informacion[3] + ')', '=', informacion[4][1])]))
-    crear_documento_latex("pasos", pasos)
+    operador.multiplicacion_binaria(informacion[1], informacion[2][1], informacion[2][0], informacion[3], informacion[4][1], informacion[4][0])
+    crear_documento_latex("pasos", operador.pasos)
     crear_pdf_latex("pasos")

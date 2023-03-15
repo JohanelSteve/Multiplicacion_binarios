@@ -17,6 +17,7 @@ class Procedimiento:
         self.var2 = var2
     
     def __repr__(self) -> str:
+        """Devuelve la información del procedimiento en LaTeX."""
         var1 = self.var1
         if type(var1) == str:
             var1 = f"\\text{{{var1}}}"
