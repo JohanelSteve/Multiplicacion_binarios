@@ -40,8 +40,7 @@ if __name__ == "__main__":
     procesar_entradas(operador, informacion)
     operador.pasos.append(Paso("Convertir datos a binario",
                     "Se convierten los datos a listas de 0s y 1s para representar un valor binario.",
-                    [Procedimiento("bits", '=', informacion[0]),
-                        Procedimiento(informacion[1], '=', Procedimiento("", '+' if informacion[2][0] == 1 else '-', informacion[2][1])),
+                    [Procedimiento(informacion[1], '=', Procedimiento("", '+' if informacion[2][0] == 1 else '-', informacion[2][1])),
                         Procedimiento(informacion[3], '=', Procedimiento("", '+' if informacion[4][0] == 1 else '-', informacion[4][1]))]))
     operador.multiplicacion_binaria(informacion[1], informacion[2][1], informacion[2][0], informacion[3], informacion[4][1], informacion[4][0])
     crear_documento_latex("pasos", operador.pasos)

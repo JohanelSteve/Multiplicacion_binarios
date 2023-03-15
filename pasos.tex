@@ -14,7 +14,7 @@
 Se recibe la cantidad de bits junto con las variables asociadas a sus respectivos valores.
 \begin{itemize}
 \item $\text{bits} = \text{6}$
-\item $\text{a} = \text{10}$
+\item $\text{a} = \text{s-10}$
 \item $\text{b} = \text{3}$
 \end{itemize}
 \note{Notas}
@@ -23,9 +23,8 @@ Se recibe la cantidad de bits junto con las variables asociadas a sus respectivo
 \frametitle{Convertir datos a binario}
 Se convierten los datos a listas de 0s y 1s para representar un valor binario.
 \begin{itemize}
-\item $\text{bits} = \text{6}$
-\item $\text{a} = \text{} + [0, 0, 1, 0, 1, 0]$
-\item $\text{b} = \text{} + [0, 0, 0, 0, 1, 1]$
+\item $\text{a} = \text{} - \text{[0, 0, 1, 0, 1, 0]}$
+\item $\text{b} = \text{} + \text{[0, 0, 0, 0, 1, 1]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -33,8 +32,8 @@ Se convierten los datos a listas de 0s y 1s para representar un valor binario.
 \frametitle{Tomar el valor absoluto de los números}
 Se toma el valor absoluto de los números para realizar la multiplicación.
 \begin{itemize}
-\item $\text{abs(a)} = [0, 0, 1, 0, 1, 0]$
-\item $\text{abs(b)} = [0, 0, 0, 0, 1, 1]$
+\item $\text{abs(a)} = \text{[0, 0, 1, 0, 1, 0]}$
+\item $\text{abs(b)} = \text{[0, 0, 0, 0, 1, 1]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -47,10 +46,76 @@ Se realiza la multiplicación binaria (de valor absoluto) de los dos números bi
 \note{Notas}
 \end{frame}
 \begin{frame}
-\frametitle{Inicializar registro}
-Inicializar el resultado como una lista de ceros con longitud 2*self.bits.
+\frametitle{Inicializar registro y empezar a multiplicar}
+Inicializar el resultado como una lista de ceros con longitud 2 $\times$ self.bits y empezar a recorrer los bits de abs(b).
 \begin{itemize}
-\item $\text{resultado} = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]$
+\item $\text{resultado} = \text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.1}
+Si el bit de abs(b) es 1, sumar abs(a)$\times 2^{i}$.
+\begin{itemize}
+\item $\text{abs(b)[5]} = \text{1} \Longrightarrow \text{Sí se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar No.1}
+Sumar abs(a)$\times 2^{i}$ al resultado.
+\begin{itemize}
+\item $\text{[0, 0, 1, 0, 1, 0]} \ll \text{0} = \text{[0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]}$
+\item $\text{resultado} + \text{producto} = \text{[0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.2}
+Si el bit de abs(b) es 1, sumar abs(a)$\times 2^{i}$.
+\begin{itemize}
+\item $\text{abs(b)[4]} = \text{1} \Longrightarrow \text{Sí se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar No.2}
+Sumar abs(a)$\times 2^{i}$ al resultado.
+\begin{itemize}
+\item $\text{[0, 0, 1, 0, 1, 0]} \ll \text{1} = \text{[0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0]}$
+\item $\text{resultado} + \text{producto} = \text{[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0]}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.3}
+Si el bit de abs(b) es 1, sumar abs(a)$\times 2^{i}$.
+\begin{itemize}
+\item $\text{abs(b)[3]} = \text{0} \Longrightarrow \text{No se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.4}
+Si el bit de abs(b) es 1, sumar abs(a)$\times 2^{i}$.
+\begin{itemize}
+\item $\text{abs(b)[2]} = \text{0} \Longrightarrow \text{No se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.5}
+Si el bit de abs(b) es 1, sumar abs(a)$\times 2^{i}$.
+\begin{itemize}
+\item $\text{abs(b)[1]} = \text{0} \Longrightarrow \text{No se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.6}
+Si el bit de abs(b) es 1, sumar abs(a)$\times 2^{i}$.
+\begin{itemize}
+\item $\text{abs(b)[0]} = \text{0} \Longrightarrow \text{No se hace la suma}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -58,7 +123,7 @@ Inicializar el resultado como una lista de ceros con longitud 2*self.bits.
 \frametitle{Recortar resultado}
 Recortar el resultado para la cantidad de bits en cuestión.
 \begin{itemize}
-\item $[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0] = [0, 1, 1, 1, 1, 0]$
+\item $\text{[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0]} = \text{[0, 1, 1, 1, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -66,7 +131,7 @@ Recortar el resultado para la cantidad de bits en cuestión.
 \frametitle{Aplicando negativos}
 Se determina el signo del resultado y se convierte a complemento a dos si es negativo.
 \begin{itemize}
-\item $\text{} + [0, 1, 1, 1, 1, 0] \Longrightarrow [0, 1, 1, 1, 1, 0]$
+\item $\text{} - \text{[0, 1, 1, 1, 1, 0]} \Longrightarrow \text{[1, 0, 0, 0, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
