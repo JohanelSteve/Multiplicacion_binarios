@@ -6,6 +6,7 @@ def leer_archivo(archivo):
     data = None
     with open(archivo, "r") as f:
         data = f.readlines()[0].split(" ")
+        data[-1] = data[-1].strip()
     return data[1:]
 
 def leer_argumentos(argumentos):
