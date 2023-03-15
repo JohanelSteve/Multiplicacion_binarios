@@ -67,7 +67,7 @@ def crear_documento_latex(nombre_archivo, pasos):
         f.write("""\\documentclass{beamer}
 \\usepackage{amsmath}
 \\usepackage{amssymb}
-\\usepackage[latin1]{inputenc}
+\\usepackage[utf8]{inputenc}
 
 """+ informacion_curso_latex() +"""
 
