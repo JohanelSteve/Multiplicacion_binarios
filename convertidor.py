@@ -6,6 +6,41 @@ def entero_a_binario(n):
     """Convierte un entero en una lista de 0s y 1s."""
     return [int(x) for x in bin(n)[2:]]
 
+def hexadecimal_a_binario(n):
+    """Convierte un número hexadecimal en una lista de 0s y 1s."""
+    return entero_a_binario(int(n, 16))
+
+def caracter_es_digito(c):
+    """Determina si un caracter es un dígito."""
+    return c >= '0' and c <= '9'
+
+def convertir_a_binario(n):
+    """Convierte un número en una lista de 0s y 1s junto con su signo al frente."""
+    signo = 1
+    primero = n[0]
+
+    if caracter_es_digito(primero):
+        return [signo, entero_a_binario(int(n))]
+    
+    resultado = None
+
+    if (n[1] == 's' and n[2] == '-'):
+        signo = -1
+        n = n[3:]
+    elif n[0] == 's' and n[1] == '-':
+        signo = -1
+        n = n[2:]
+    else:
+        n = n[1:]
+    
+    if primero == 'b':
+        resultado = [int(x) for x in n]
+    elif primero == 'h':
+        resultado = hexadecimal_a_binario(n)
+    else:
+        resultado = entero_a_binario(int(n))
+
+    return signo, resultado
 
 def sumar_binarios(a, b):
     """Suma dos números binarios y devuelve el resultado."""
@@ -101,8 +136,8 @@ def complemento_a_dos(a):
     return resultado
 
 
-a = 1111111111
+"""a = 1111111111
 b = 1000110111
 resultado = multiplicacion_binaria(a, b)
-print(f"{a} x {b} = {resultado} (esperado: 14031)")
+print(f"{a} x {b} = {resultado} (esperado: 14031)")"""
 
