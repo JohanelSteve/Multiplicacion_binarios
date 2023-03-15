@@ -54,7 +54,14 @@ if __name__ == "__main__":
                         Procedimiento(informacion[3], '=', Procedimiento("", '+' if informacion[4][0] == 1 else '-', informacion[4][1]))]))
     
     # Multiplicar los números binarios
-    operador.multiplicacion_binaria(informacion[1], informacion[2][1], informacion[2][0], informacion[3], informacion[4][1], informacion[4][0])
+    resultado = operador.multiplicacion_binaria(informacion[1], informacion[2][1], informacion[2][0], informacion[3], informacion[4][1], informacion[4][0])
+    operador.pasos.append(Paso("Resultado",
+                               "Se muestra el resultado de la multiplicación binaria.",
+                               [Procedimiento("Resultado", '=',
+                                              Procedimiento(Procedimiento(informacion[1], '*',
+                                                                          Procedimiento(informacion[3], '=',
+                                                                                        Procedimiento(Procedimiento("", '+' if informacion[2][0] == 1 else '-', informacion[2][1]), '*',
+                                                                                                      Procedimiento("", '+' if informacion[4][0] == 1 else '-', informacion[4][1])))), '=', resultado))]))
 
     # Crear el archivo .tex y el PDF
     crear_documento_latex("pasos", operador.pasos)

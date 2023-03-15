@@ -51,7 +51,7 @@ class Convertidor:
         
         # Determinar la base del número y convertirlo a binario
         if primero == 'b':
-            resultado = [int(x) for x in n]
+            resultado = [0]*(self.bits - len(n)) + [int(x) for x in n]
         elif primero == 'h':
             resultado = self.hexadecimal_a_binario(n)
         else:
@@ -123,7 +123,7 @@ class Convertidor:
         for i in range(self.bits):
             # Si el bit de b es 1, sumar a * 2^i
             self.pasos.append(Paso(f"Sumar o no sumar No.{i+1}",
-                                   f"Si el bit de ${Procedimiento(f'abs({nombre_b})', '=', 1)}$ es 1, sumar ${Procedimiento(f'abs({nombre_a})', '*', Procedimiento(2, '^', i))}$ al resultado.",
+                                   f"Si el bit de ${Procedimiento(f'abs({nombre_b})', '=', 1)}$, sumar ${Procedimiento(f'abs({nombre_a})', '*', Procedimiento(2, '^', i))}$ al resultado.",
                                    [Procedimiento(Procedimiento(f"abs({nombre_b})[{self.bits - 1 - i}]", '=', b[self.bits - 1 - i]), "=>", "Sí se hace la suma" if b[self.bits - 1 - i] == 1 else "No se hace la suma")]))
             if b[self.bits - 1 - i] == 1:
                 # Multiplicar a * 2^i y agregar 0s al inicio
