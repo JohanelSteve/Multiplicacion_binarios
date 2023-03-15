@@ -81,4 +81,8 @@ def crear_documento_latex(nombre_archivo, pasos):
 def crear_pdf_latex(nombre_archivo):
     """Crea un archivo PDF a partir de un archivo LaTeX."""
     os.system(f"pdflatex {nombre_archivo}.tex")
-    os.system(f"rm {nombre_archivo}.aux {nombre_archivo}.log {nombre_archivo}.out {nombre_archivo}.nav {nombre_archivo}.snm {nombre_archivo}.toc")
+    import platform
+    if platform.system() == "Windows":
+        os.system(f"del {nombre_archivo}.aux {nombre_archivo}.log {nombre_archivo}.out {nombre_archivo}.nav {nombre_archivo}.snm {nombre_archivo}.toc")
+    else:
+        os.system(f"rm {nombre_archivo}.aux {nombre_archivo}.log {nombre_archivo}.out {nombre_archivo}.nav {nombre_archivo}.snm {nombre_archivo}.toc")

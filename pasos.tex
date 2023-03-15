@@ -13,9 +13,9 @@
 \frametitle{Recepción de datos}
 Se recibe la cantidad de bits junto con las variables asociadas a sus respectivos valores.
 \begin{itemize}
-\item $\text{bits}=\text{7}$
-\item $\text{ooga}=\text{d26}$
-\item $\text{booga}=\text{b11}$
+\item $\text{bits}=\text{9}$
+\item $\text{ooga}=\text{s-10}$
+\item $\text{booga}=\text{hsf}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -23,8 +23,8 @@ Se recibe la cantidad de bits junto con las variables asociadas a sus respectivo
 \frametitle{Convertir datos a binario}
 Se convierten los datos a listas de 0s y 1s para representar un valor binario.
 \begin{itemize}
-\item $\text{ooga}=\text{}+\text{[0, 0, 1, 1, 0, 1, 0]}$
-\item $\text{booga}=\text{}+\text{[0, 0, 0, 0, 0, 1, 1]}$
+\item $\text{ooga}=\text{}-\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}$
+\item $\text{booga}=\text{}+\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -32,8 +32,8 @@ Se convierten los datos a listas de 0s y 1s para representar un valor binario.
 \frametitle{Tomar el valor absoluto de los números}
 Se toma el valor absoluto de los números para realizar la multiplicación.
 \begin{itemize}
-\item $\text{abs(ooga)}=\text{[0, 0, 1, 1, 0, 1, 0]}$
-\item $\text{abs(booga)}=\text{[0, 0, 0, 0, 0, 1, 1]}$
+\item $\text{abs(ooga)}=\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}$
+\item $\text{abs(booga)}=\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -41,15 +41,15 @@ Se toma el valor absoluto de los números para realizar la multiplicación.
 \frametitle{Multiplicación binaria}
 Se realiza la multiplicación binaria (de valor absoluto) de los dos números binarios.
 \begin{itemize}
-\item $\text{abs(ooga)}\times\text{abs(booga)}=\text{[0, 0, 1, 1, 0, 1, 0]}\times\text{[0, 0, 0, 0, 0, 1, 1]}=\text{...}$
+\item $\text{abs(ooga)}\times\text{abs(booga)}=\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\times\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}=\text{...}$
 \end{itemize}
 \note{Notas}
 \end{frame}
 \begin{frame}
 \frametitle{Inicializar registro y empezar a multiplicar}
-Inicializar el resultado como una lista de ceros con longitud $\text{2}\times\text{7}$ y empezar a recorrer los bits de abs(booga).
+Inicializar el resultado como una lista de ceros con longitud $\text{2}\times\text{9}$ y empezar a recorrer los bits de abs(booga).
 \begin{itemize}
-\item $\text{resultado}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}$
+\item $\text{resultado}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -57,7 +57,7 @@ Inicializar el resultado como una lista de ceros con longitud $\text{2}\times\te
 \frametitle{Sumar o no sumar No.1}
 Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{0}}$ al resultado.
 \begin{itemize}
-\item $\text{abs(booga)[6]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
+\item $\text{abs(booga)[8]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -65,8 +65,8 @@ Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}
 \frametitle{Sumar No.1}
 Sumar $\text{abs(ooga)}\times\text{2}^{\text{0}}$ al resultado.
 \begin{itemize}
-\item $\text{[0, 0, 1, 1, 0, 1, 0]}\ll\text{0}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0]}$
-\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0]}$
+\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{0}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]}$
+\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -74,7 +74,7 @@ Sumar $\text{abs(ooga)}\times\text{2}^{\text{0}}$ al resultado.
 \frametitle{Sumar o no sumar No.2}
 Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{1}}$ al resultado.
 \begin{itemize}
-\item $\text{abs(booga)[5]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
+\item $\text{abs(booga)[7]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -82,8 +82,8 @@ Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}
 \frametitle{Sumar No.2}
 Sumar $\text{abs(ooga)}\times\text{2}^{\text{1}}$ al resultado.
 \begin{itemize}
-\item $\text{[0, 0, 1, 1, 0, 1, 0]}\ll\text{1}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0]}$
-\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0]}$
+\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{1}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0]}$
+\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -91,7 +91,16 @@ Sumar $\text{abs(ooga)}\times\text{2}^{\text{1}}$ al resultado.
 \frametitle{Sumar o no sumar No.3}
 Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{2}}$ al resultado.
 \begin{itemize}
-\item $\text{abs(booga)[4]}=\text{0}\Longrightarrow\text{No se hace la suma}$
+\item $\text{abs(booga)[6]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar No.3}
+Sumar $\text{abs(ooga)}\times\text{2}^{\text{2}}$ al resultado.
+\begin{itemize}
+\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{2}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0]}$
+\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -99,7 +108,16 @@ Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}
 \frametitle{Sumar o no sumar No.4}
 Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{3}}$ al resultado.
 \begin{itemize}
-\item $\text{abs(booga)[3]}=\text{0}\Longrightarrow\text{No se hace la suma}$
+\item $\text{abs(booga)[5]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar No.4}
+Sumar $\text{abs(ooga)}\times\text{2}^{\text{3}}$ al resultado.
+\begin{itemize}
+\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{3}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0]}$
+\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -107,7 +125,7 @@ Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}
 \frametitle{Sumar o no sumar No.5}
 Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{4}}$ al resultado.
 \begin{itemize}
-\item $\text{abs(booga)[2]}=\text{0}\Longrightarrow\text{No se hace la suma}$
+\item $\text{abs(booga)[4]}=\text{0}\Longrightarrow\text{No se hace la suma}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -115,13 +133,29 @@ Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}
 \frametitle{Sumar o no sumar No.6}
 Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{5}}$ al resultado.
 \begin{itemize}
-\item $\text{abs(booga)[1]}=\text{0}\Longrightarrow\text{No se hace la suma}$
+\item $\text{abs(booga)[3]}=\text{0}\Longrightarrow\text{No se hace la suma}$
 \end{itemize}
 \note{Notas}
 \end{frame}
 \begin{frame}
 \frametitle{Sumar o no sumar No.7}
 Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{6}}$ al resultado.
+\begin{itemize}
+\item $\text{abs(booga)[2]}=\text{0}\Longrightarrow\text{No se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.8}
+Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{7}}$ al resultado.
+\begin{itemize}
+\item $\text{abs(booga)[1]}=\text{0}\Longrightarrow\text{No se hace la suma}$
+\end{itemize}
+\note{Notas}
+\end{frame}
+\begin{frame}
+\frametitle{Sumar o no sumar No.9}
+Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}^{\text{8}}$ al resultado.
 \begin{itemize}
 \item $\text{abs(booga)[0]}=\text{0}\Longrightarrow\text{No se hace la suma}$
 \end{itemize}
@@ -131,7 +165,7 @@ Si el bit de $\text{abs(booga)}=\text{1}$, sumar $\text{abs(ooga)}\times\text{2}
 \frametitle{Recortar resultado}
 Recortar el resultado para la cantidad de bits en cuestión.
 \begin{itemize}
-\item $\text{[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0]}=\text{[1, 0, 0, 1, 1, 1, 0]}$
+\item $\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0]}=\text{[0, 1, 0, 0, 1, 0, 1, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -139,7 +173,7 @@ Recortar el resultado para la cantidad de bits en cuestión.
 \frametitle{Aplicando negativos}
 Se determina el signo del resultado y se convierte a complemento a dos si es negativo.
 \begin{itemize}
-\item $\text{}+\text{[1, 0, 0, 1, 1, 1, 0]}\Longrightarrow\text{[1, 0, 0, 1, 1, 1, 0]}$
+\item $\text{}-\text{[0, 1, 0, 0, 1, 0, 1, 1, 0]}\Longrightarrow\text{[1, 0, 1, 1, 0, 1, 0, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -147,7 +181,7 @@ Se determina el signo del resultado y se convierte a complemento a dos si es neg
 \frametitle{Resultado}
 Se muestra el resultado de la multiplicación binaria.
 \begin{itemize}
-\item $\text{Resultado}=\text{ooga}\times\text{booga}=\text{}+\text{[0, 0, 1, 1, 0, 1, 0]}\times\text{}+\text{[0, 0, 0, 0, 0, 1, 1]}=\text{[1, 0, 0, 1, 1, 1, 0]}$
+\item $\text{Resultado}=\text{ooga}\times\text{booga}=\text{}-\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\times\text{}+\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}=\text{[1, 0, 1, 1, 0, 1, 0, 1, 0]}$
 \end{itemize}
 \note{Notas}
 \end{frame}

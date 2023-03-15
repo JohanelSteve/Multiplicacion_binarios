@@ -46,6 +46,8 @@ class Convertidor:
         elif n[0] == 's' and n[1] == '-':
             signo = -1
             n = n[2:]
+        elif n[1] == 's':
+            n = n[2:]
         else:
             n = n[1:]
         
