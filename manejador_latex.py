@@ -63,8 +63,8 @@ def informacion_curso_latex():
 
 def crear_documento_latex(nombre_archivo, pasos):
     """Crea un archivo LaTeX a partir de una lista de pasos."""
-    with open(f"{nombre_archivo}.tex", "w") as f:
-        f.write("""\\documentclass{beamer}
+    with open(f"{nombre_archivo}.tex", "wb") as f:
+        f.write(str("""\\documentclass{beamer}
 \\usepackage{amsmath}
 \\usepackage{amssymb}
 \\usepackage[utf8]{inputenc}
@@ -77,7 +77,7 @@ def crear_documento_latex(nombre_archivo, pasos):
 \maketitle
 \\note{Notas}
 \end{frame}
-\end{document}""")
+\end{document}""").encode('utf-8'))
 
 def crear_pdf_latex(nombre_archivo):
     """Crea un archivo PDF a partir de un archivo LaTeX."""
