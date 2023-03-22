@@ -14,9 +14,9 @@
 \frametitle{Recepción de datos}
 Se recibe la cantidad de bits junto con las variables asociadas a sus respectivos valores.
 \begin{itemize}
-\item $\text{bits}=\text{9}$
-\item $\text{b}=\text{s-10}$
-\item $\text{a}=\text{hsf}$
+\item $\texttt{bits}=\texttt{3}$
+\item $\texttt{b}=\texttt{s-10}$
+\item $\texttt{a}=\texttt{hsf}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -24,8 +24,8 @@ Se recibe la cantidad de bits junto con las variables asociadas a sus respectivo
 \frametitle{Convertir datos a binario}
 Se convierten los datos a listas de 0s y 1s para representar un valor binario.
 \begin{itemize}
-\item $\text{b}=\text{}-\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}$
-\item $\text{a}=\text{}+\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}$
+\item $\texttt{b}=\texttt{}-\texttt{010}$
+\item $\texttt{a}=\texttt{}+\texttt{111}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -33,8 +33,8 @@ Se convierten los datos a listas de 0s y 1s para representar un valor binario.
 \frametitle{Tomar el valor absoluto de los números}
 Se toma el valor absoluto de los números para realizar la multiplicación.
 \begin{itemize}
-\item $\text{abs(b)}=\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}$
-\item $\text{abs(a)}=\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}$
+\item $\texttt{abs(b)}=\texttt{010}$
+\item $\texttt{abs(a)}=\texttt{111}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -42,123 +42,22 @@ Se toma el valor absoluto de los números para realizar la multiplicación.
 \frametitle{Multiplicación binaria}
 Se realiza la multiplicación binaria (de valor absoluto) de los dos números binarios.
 \begin{itemize}
-\item $\text{abs(b)}\times\text{abs(a)}=\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\times\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}=\text{...}$
+\item $\texttt{abs(b)}\times\texttt{abs(a)}=\texttt{010}\times\texttt{111}=\texttt{...}$
 \end{itemize}
 \note{Notas}
 \end{frame}
 \begin{frame}
-\frametitle{Inicializar registro y empezar a multiplicar}
-Inicializar el resultado como una lista de ceros con longitud $\text{2}\times\text{9}$ y empezar a recorrer los bits de abs(a).
+\frametitle{Procedimientos}
+
 \begin{itemize}
-\item $\text{resultado}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.1}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{0}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[8]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar No.1}
-Sumar $\text{abs(b)}\times\text{2}^{\text{0}}$ al resultado.
-\begin{itemize}
-\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{0}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]}$
-\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0]}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.2}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{1}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[7]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar No.2}
-Sumar $\text{abs(b)}\times\text{2}^{\text{1}}$ al resultado.
-\begin{itemize}
-\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{1}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0]}$
-\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0]}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.3}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{2}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[6]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar No.3}
-Sumar $\text{abs(b)}\times\text{2}^{\text{2}}$ al resultado.
-\begin{itemize}
-\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{2}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0]}$
-\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0]}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.4}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{3}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[5]}=\text{1}\Longrightarrow\text{Sí se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar No.4}
-Sumar $\text{abs(b)}\times\text{2}^{\text{3}}$ al resultado.
-\begin{itemize}
-\item $\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\ll\text{3}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0]}$
-\item $\text{resultado}+\text{producto}=\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0]}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.5}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{4}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[4]}=\text{0}\Longrightarrow\text{No se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.6}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{5}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[3]}=\text{0}\Longrightarrow\text{No se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.7}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{6}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[2]}=\text{0}\Longrightarrow\text{No se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.8}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{7}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[1]}=\text{0}\Longrightarrow\text{No se hace la suma}$
-\end{itemize}
-\note{Notas}
-\end{frame}
-\begin{frame}
-\frametitle{Sumar o no sumar No.9}
-Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text{8}}$ al resultado.
-\begin{itemize}
-\item $\text{abs(a)[0]}=\text{0}\Longrightarrow\text{No se hace la suma}$
+\item $\texttt{\ \ \ }\texttt{010}$
+\item $\texttt{\ \ x}\texttt{111}$
+\item $\text{------------}\text{}$
+\item $\texttt{\ \ \ }\texttt{010}$
+\item $\texttt{\ \ }\texttt{010}$
+\item $\texttt{+}\texttt{010}$
+\item $\text{------------}\text{}$
+\item $\texttt{}\texttt{001110}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -166,7 +65,7 @@ Si el bit de $\text{abs(a)}=\text{1}$, sumar $\text{abs(b)}\times\text{2}^{\text
 \frametitle{Recortar resultado}
 Recortar el resultado para la cantidad de bits en cuestión.
 \begin{itemize}
-\item $\text{[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0]}=\text{[0, 1, 0, 0, 1, 0, 1, 1, 0]}$
+\item $\texttt{001110}=\texttt{110}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -174,7 +73,7 @@ Recortar el resultado para la cantidad de bits en cuestión.
 \frametitle{Aplicando negativos}
 Se determina el signo del resultado y se convierte a complemento a dos si es negativo.
 \begin{itemize}
-\item $\text{}-\text{[0, 1, 0, 0, 1, 0, 1, 1, 0]}\Longrightarrow\text{[1, 0, 1, 1, 0, 1, 0, 1, 0]}$
+\item $\texttt{}-\texttt{110}\Longrightarrow\texttt{010}$
 \end{itemize}
 \note{Notas}
 \end{frame}
@@ -182,7 +81,7 @@ Se determina el signo del resultado y se convierte a complemento a dos si es neg
 \frametitle{Resultado}
 Se muestra el resultado de la multiplicación binaria.
 \begin{itemize}
-\item $\text{Resultado}=\text{b}\times\text{a}=\text{}-\text{[0, 0, 0, 0, 0, 1, 0, 1, 0]}\times\text{}+\text{[0, 0, 0, 0, 0, 1, 1, 1, 1]}=\text{[1, 0, 1, 1, 0, 1, 0, 1, 0]}$
+\item $\texttt{Resultado}=\texttt{b}\times\texttt{a}=\texttt{}-\texttt{010}\times\texttt{}+\texttt{111}=\texttt{010}$
 \end{itemize}
 \note{Notas}
 \end{frame}

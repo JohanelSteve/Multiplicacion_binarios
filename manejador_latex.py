@@ -3,6 +3,8 @@ import os
 class Procedimiento:
     """Guarda información de un procedimiento en LaTeX."""
     tabla_operadores = {
+        "": "",
+        " ": "",
         "+": "+",
         "-": "-",
         "*": "\\times",
@@ -11,7 +13,7 @@ class Procedimiento:
         "=>": "\\Longrightarrow",
         "<=>": "\\Longleftrightarrow",
         "<<": "\\ll",
-        "^": "^"
+        "^": "^",
     }
 
     def __init__(self, var1, operador, var2):
@@ -22,11 +24,18 @@ class Procedimiento:
     def __repr__(self) -> str:
         """Devuelve la información del procedimiento en LaTeX."""
         var1 = self.var1
-        if type(var1) != Procedimiento:
-            var1 = f"\\text{{{var1}}}"
-        var2 = self.var2
-        if type(var2) != Procedimiento:
-            var2 = f"\\text{{{var2}}}"
+        if self.operador == " ":
+            if type(var1) != Procedimiento:
+                var1 = f"\\text{{{var1}}}"
+            var2 = self.var2
+            if type(var2) != Procedimiento:
+                var2 = f"\\text{{{var2}}}"
+        else:
+            if type(var1) != Procedimiento:
+                var1 = f"\\texttt{{{var1}}}"
+            var2 = self.var2
+            if type(var2) != Procedimiento:
+                var2 = f"\\texttt{{{var2}}}"
         return f"{var1}{self.tabla_operadores[self.operador]}" + ('{' if self.operador == '^' else '') + f"{var2}" + ('}' if self.operador == '^' else '')
 
 class Paso:

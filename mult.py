@@ -48,11 +48,10 @@ if __name__ == "__main__":
     
     procesar_entradas(operador, informacion)
 
-
     operador.pasos.append(Paso("Convertir datos a binario",
                     "Se convierten los datos a listas de 0s y 1s para representar un valor binario.",
-                    [Procedimiento(informacion[1], '=', Procedimiento("", '+' if informacion[2][0] == 1 else '-', informacion[2][1])),
-                        Procedimiento(informacion[3], '=', Procedimiento("", '+' if informacion[4][0] == 1 else '-', informacion[4][1]))]))
+                    [Procedimiento(informacion[1], '=', Procedimiento("", '+' if informacion[2][0] == 1 else '-', operador.binario_a_texto(informacion[2][1]))),
+                        Procedimiento(informacion[3], '=', Procedimiento("", '+' if informacion[4][0] == 1 else '-', operador.binario_a_texto(informacion[4][1])))]))
     
     # Multiplicar los números binarios
     resultado = operador.multiplicacion_binaria(informacion[1], informacion[2][1], informacion[2][0], informacion[3], informacion[4][1], informacion[4][0])
@@ -61,8 +60,8 @@ if __name__ == "__main__":
                                [Procedimiento("Resultado", '=',
                                               Procedimiento(Procedimiento(informacion[1], '*',
                                                                           Procedimiento(informacion[3], '=',
-                                                                                        Procedimiento(Procedimiento("", '+' if informacion[2][0] == 1 else '-', informacion[2][1]), '*',
-                                                                                                      Procedimiento("", '+' if informacion[4][0] == 1 else '-', informacion[4][1])))), '=', resultado))]))
+                                                                                        Procedimiento(Procedimiento("", '+' if informacion[2][0] == 1 else '-', operador.binario_a_texto(informacion[2][1])), '*',
+                                                                                                      Procedimiento("", '+' if informacion[4][0] == 1 else '-', operador.binario_a_texto(informacion[4][1]))))), '=', operador.binario_a_texto(resultado)))]))
 
     # Crear el archivo .tex y el PDF
     crear_documento_latex("pasos", operador.pasos)
